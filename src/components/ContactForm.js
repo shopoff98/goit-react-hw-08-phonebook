@@ -24,6 +24,7 @@ export default function ContactForm({ onSubmit }) {
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit({ name, phone });
+    console.log("hi");
     setName("");
     setPhone("");
   }
