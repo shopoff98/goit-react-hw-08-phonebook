@@ -3,15 +3,13 @@ import {
   useLoginUserMutation,
   useGetCurrentUserQuery,
 } from "../../redux/contacts/contacts-reducer";
-import { contactsApi } from "../../redux/contacts/contacts-reducer";
-import { useSelector } from "react-redux";
+import { login } from "../../redux/contacts/auth/auth-operations";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginUser, { data }] = useLoginUserMutation();
-  const { datf } = useGetCurrentUserQuery();
-  console.log(datf);
+  const dispatch = useDispatch();
 
   function handleChange(e) {
     const { name, value } = e.currentTarget;
@@ -29,10 +27,8 @@ export default function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    loginUser({
-      email,
-      password,
-    });
+    const user = { email, password };
+    dispatch(login(user));
     setEmail("");
     setPassword("");
   }

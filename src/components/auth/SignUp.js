@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useSignUpUserMutation } from "../../redux/contacts/contacts-reducer";
-
+import { signUp } from "../../redux/contacts/auth/auth-operations";
+import { useDispatch } from "react-redux";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [signUpUser, { data }] = useSignUpUserMutation();
+  const dispatch = useDispatch();
 
   function handleChange(e) {
     const { name, value } = e.currentTarget;
@@ -26,11 +26,8 @@ export default function SignUp() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    signUpUser({
-      name: userName,
-      email,
-      password,
-    });
+    const user = { name: userName, email, password };
+    dispatch(signUp(user));
     setUserName("");
     setEmail("");
     setPassword("");

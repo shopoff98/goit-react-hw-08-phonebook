@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { useLogOutMutation } from "../redux/contacts/contacts-reducer";
+import UserMenu from "./auth/UserMenu";
 export default function Navigation() {
-  const [logout] = useLogOutMutation();
   return (
     <header>
-      <nav>
+      <nav style={{ display: "flex" }}>
         <NavLink to="/register"> SignUp</NavLink>
         <NavLink to="/login">Login</NavLink>
         <NavLink to="/contacts">Contacts</NavLink>
+        <UserMenu />
       </nav>
     </header>
   );

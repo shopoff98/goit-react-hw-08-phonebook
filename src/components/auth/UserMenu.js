@@ -1,3 +1,19 @@
+import { useSelector, useDispatch } from "react-redux";
+import { logOut } from "../../redux/contacts/auth/auth-operations";
 export default function UserMenu() {
-  return null;
+  const email = useSelector((state) => state.auth.user.email);
+  const loggedIn = useSelector((state) => state.auth.isLoggenIn);
+  const dispatch = useDispatch();
+  return (
+    <div style={{ display: "flex" }}>
+      <p style={{ marginTop: 0, marginLeft: 10 }}>{email}</p>
+      <button
+        style={{ height: 20 }}
+        type="button"
+        onClick={() => dispatch(logOut())}
+      >
+        LogOut
+      </button>
+    </div>
+  );
 }
