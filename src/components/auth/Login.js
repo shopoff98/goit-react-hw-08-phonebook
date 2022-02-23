@@ -35,7 +35,7 @@ export default function Login() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>SignUp</h3>
+      <h3>Login</h3>
       <label>
         {" "}
         Email

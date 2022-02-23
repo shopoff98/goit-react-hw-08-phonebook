@@ -6,17 +6,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { createContact } from "../redux/contacts/contacts-operations";
 import toast from "react-hot-toast";
 import { getContacts } from "../redux/contacts/contacts-operations";
+import { getCurrentUser } from "../redux/contacts/auth/auth-operations";
+import {
+  useGetContactsQuery,
+  useAddContactMutation,
+} from "../redux/contacts/contacts-reducer";
 
 export default function Contacts() {
+  const { data } = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.contacts);
   useEffect(() => {
-    dispatch(getContacts());
-  }, [dispatch]);
-  console.log(contacts);
-
+    dispatch(getCurrentUser());
+  });
   function formSubmit({ name, number }) {
-    if (contacts.find((item) => item.name === name)) {
+    if (data.find((item) => item.name === name)) {
       toast.error(`${name} is already in contacts!`);
       return;
     } else {
@@ -24,8 +28,7 @@ export default function Contacts() {
         name,
         number,
       };
-      console.log(contact);
-      dispatch(createContact(contact));
+      addContact(contact);
       toast.success("Contact added");
     }
   }
@@ -34,8 +37,8 @@ export default function Contacts() {
       <h1>Phonebook</h1>
       <ContactForm onSubmit={formSubmit} />
       <h2>Contacts</h2>
-      <Filter contacts={contacts} />
-      {contacts && <ContactList contacts={contacts} />}
+      <Filter contacts={data} />
+      {data && <ContactList contacts={data} />}
     </>
   );
 }
