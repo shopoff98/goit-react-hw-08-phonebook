@@ -1,0 +1,18 @@
+.inactive {
+  display: inline-block;
+  text-decoration: none;
+
+  font-weight: 400;
+  color: #2196f3;
+  font-size: 14px;
+  border-bottom: solid 1px;
+  border-color: #2196f3;
+}
+
+.active {
+  color: #2196f3;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+}

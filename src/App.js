@@ -9,6 +9,7 @@ import PublicRoute from "./components/PublicRoute";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./redux/contacts/auth/auth-operations";
 import { useEffect } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const SignUp = lazy(() => import("./components/auth/SignUp"));
 const Login = lazy(() => import("./components/auth/Login"));
@@ -19,8 +20,10 @@ export default function App() {
   useEffect(() => {
     dispatch(getCurrentUser());
   });
+
   return (
-    <Container>
+    // <Container>
+    <>
       <Toaster />
       <Navigation />
       <Suspense fallback="Загружаем...">
@@ -36,6 +39,7 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
-    </Container>
+    </>
+    // </Container>
   );
 }

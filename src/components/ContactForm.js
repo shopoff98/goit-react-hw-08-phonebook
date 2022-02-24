@@ -1,7 +1,13 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { FormControl } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import FormLabel from "@mui/material/FormLabel";
+import { InputLabel } from "@mui/material";
 import { Button, Input, Label } from "./styled/Common.styled";
 import { Form } from "./styled/ContactForm.styled";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../components/constants/theme";
 
 export default function ContactForm({ onSubmit }) {
   const [name, setName] = useState("");

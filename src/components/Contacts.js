@@ -11,6 +11,9 @@ import {
   useGetContactsQuery,
   useAddContactMutation,
 } from "../redux/contacts/contacts-reducer";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../components/constants/theme";
+import { Container } from "../components/styled/Container.styled";
 
 export default function Contacts() {
   const { data } = useGetContactsQuery();
@@ -33,12 +36,14 @@ export default function Contacts() {
     }
   }
   return (
-    <>
-      <h1>Phonebook</h1>
-      <ContactForm onSubmit={formSubmit} />
-      <h2>Contacts</h2>
-      <Filter contacts={data} />
-      {data && <ContactList contacts={data} />}
-    </>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <h1>Phonebook</h1>
+        <ContactForm onSubmit={formSubmit} />
+        <h2>Contacts</h2>
+        <Filter contacts={data} />
+        {data && <ContactList contacts={data} />}
+      </Container>
+    </ThemeProvider>
   );
 }
