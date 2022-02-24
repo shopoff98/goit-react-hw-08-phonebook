@@ -38,8 +38,10 @@ export default function Contacts() {
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <h1>Phonebook</h1>
-        <ContactForm onSubmit={formSubmit} />
+        <h1 style={{ textAlign: "center" }}>Phonebook</h1>
+        <div style={{}}>
+          <ContactForm onSubmit={formSubmit} />
+        </div>
         <h2>Contacts</h2>
         <Filter contacts={data} />
         {data && <ContactList contacts={data} />}
