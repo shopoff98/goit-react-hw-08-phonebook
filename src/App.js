@@ -9,6 +9,7 @@ import PublicRoute from "./components/PublicRoute";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./redux/contacts/auth/auth-operations";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const SignUp = lazy(() => import("./components/auth/SignUp"));
@@ -19,7 +20,9 @@ export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUser());
-  });
+  }, [dispatch]);
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   return (
     // <Container>
@@ -28,6 +31,7 @@ export default function App() {
       <Navigation />
       <Suspense fallback="Загружаем...">
         <Routes>
+          <Route path="/" element={isLoggedIn ? <Contacts /> : <Login />} />
           <Route path="/register" element={<PublicRoute restricted={true} />}>
             <Route path="/register" element={<SignUp />} />
           </Route>

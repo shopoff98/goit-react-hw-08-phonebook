@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const Button = styled.button`
   display: flex;
   align-items: center;
+  font-family: "Poppins", sans-serif;
   justify-content: center;
   padding: 0 20px;
   margin-bottom: ${(props) => props.theme.spacing(props.mb)};
@@ -11,7 +12,6 @@ export const Button = styled.button`
   line-height: 3;
   border-width: 0;
   border-radius: 20px;
-  font-family: "Roboto", sans-serif;
   cursor: pointer;
 
    :hover,

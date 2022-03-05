@@ -2,10 +2,8 @@ import ContactForm from "./ContactForm";
 import Filter from "./Filter";
 import ContactList from "./ContactList";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { createContact } from "../redux/contacts/contacts-operations";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import { getContacts } from "../redux/contacts/contacts-operations";
 import { getCurrentUser } from "../redux/contacts/auth/auth-operations";
 import {
   useGetContactsQuery,
@@ -21,7 +19,7 @@ export default function Contacts() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUser());
-  });
+  }, [dispatch]);
   function formSubmit({ name, number }) {
     if (data.find((item) => item.name === name)) {
       toast.error(`${name} is already in contacts!`);
@@ -39,7 +37,13 @@ export default function Contacts() {
     <ThemeProvider theme={theme}>
       <Container>
         <h1 style={{ textAlign: "center" }}>Phonebook</h1>
-        <div style={{}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <ContactForm onSubmit={formSubmit} />
         </div>
         <h2>Contacts</h2>

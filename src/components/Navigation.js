@@ -2,18 +2,8 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserMenu from "./auth/UserMenu";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardHeader from "@mui/material/CardHeader";
 import CssBaseline from "@mui/material/CssBaseline";
-import Grid from "@mui/material/Grid";
-import StarIcon from "@mui/icons-material/StarBorder";
-import Link from "@mui/material/Link";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import s from "../components/styled/AppBarNavigation.module.css";
 
@@ -34,9 +24,6 @@ export default function Navigation() {
         }}
       >
         <Toolbar>
-          {/* <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            Company name
-          </Typography> */}
           <nav
             style={{
               display: "flex",

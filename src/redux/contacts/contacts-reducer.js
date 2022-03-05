@@ -40,17 +40,15 @@ export const contactsApi = createApi({
       },
       invalidatesTags: ["Contacts"],
     }),
-    getCurrentUser: builder.query({
-      query() {
+    patchContact: builder.mutation({
+      query(id, contact) {
         return {
-          url: "/users/current",
-          prepareHeaders: (headers, { getState }) => {
-            const token = getState().user.token;
-            return headers.set("Authorization", token);
-          },
+          url: `/contacts/${id}`,
+          method: "PATCH",
+          body: contact,
         };
       },
-      providesTags: ["Contacts"],
+      invalidatesTags: ["Contacts"],
     }),
   }),
 });
@@ -67,5 +65,5 @@ export const {
   useGetContactsQuery,
   useAddContactMutation,
   useDeleteContactMutation,
-  useGetCurrentUserQuery,
+  usePatchContactMutation,
 } = contactsApi;

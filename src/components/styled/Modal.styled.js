@@ -9,10 +9,10 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export const Modal = styled.div`
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+  // max-width: calc(100vw - 48px);
+  // max-height: calc(100vh - 24px);
 `;
