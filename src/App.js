@@ -1,7 +1,6 @@
 import "./App.css";
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
-import { Container } from "./components/styled/Container.styled";
 import { lazy, Suspense } from "react";
 import Navigation from "./components/Navigation";
 import PrivateRoute from "./components/PrivateRoute";
@@ -9,12 +8,12 @@ import PublicRoute from "./components/PublicRoute";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./redux/contacts/auth/auth-operations";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Container } from "./components/styled/Container.styled";
 
+const Contacts = lazy(() => import("./components/Contacts"));
 const SignUp = lazy(() => import("./components/auth/SignUp"));
 const Login = lazy(() => import("./components/auth/Login"));
-const Contacts = lazy(() => import("./components/Contacts"));
+const Home = lazy(() => import("./components/Home"));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -22,16 +21,13 @@ export default function App() {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-
   return (
-    // <Container>
-    <>
+    <Container>
       <Toaster />
       <Navigation />
       <Suspense fallback="Загружаем...">
         <Routes>
-          <Route path="/" element={isLoggedIn ? <Contacts /> : <Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<PublicRoute restricted={true} />}>
             <Route path="/register" element={<SignUp />} />
           </Route>
@@ -43,7 +39,6 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
-    </>
-    // </Container>
+    </Container>
   );
 }

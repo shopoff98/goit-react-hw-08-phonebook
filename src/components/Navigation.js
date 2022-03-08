@@ -31,6 +31,51 @@ export default function Navigation() {
               flexGrow: 1,
             }}
           >
+            {isLoggedIn ? (
+              <>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? s.active : s.inactive
+                  }
+                >
+                  Home
+                </NavLink>{" "}
+                <NavLink
+                  to="contacts"
+                  className={({ isActive }) =>
+                    isActive ? s.active : s.inactive
+                  }
+                >
+                  Contacts
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="register"
+                  className={({ isActive }) =>
+                    isActive ? s.active : s.inactive
+                  }
+                >
+                  Sign Up
+                </NavLink>
+                <NavLink
+                  to="login"
+                  className={({ isActive }) =>
+                    isActive ? s.active : s.inactive
+                  }
+                >
+                  Sign In{" "}
+                </NavLink>
+              </>
+            )}
+            {/* <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? s.active : s.inactive)}
+            >
+              Home
+            </NavLink>
             <NavLink
               to="register"
               className={({ isActive }) => (isActive ? s.active : s.inactive)}
@@ -48,7 +93,7 @@ export default function Navigation() {
               className={({ isActive }) => (isActive ? s.active : s.inactive)}
             >
               Contacts
-            </NavLink>
+            </NavLink> */}
           </nav>
           {isLoggedIn && <UserMenu />}
         </Toolbar>

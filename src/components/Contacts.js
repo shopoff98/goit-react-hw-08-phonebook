@@ -35,7 +35,7 @@ export default function Contacts() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Container>
+      <Container style={{ paddingLeft: 20 }}>
         <h1 style={{ textAlign: "center" }}>Phonebook</h1>
         <div
           style={{
