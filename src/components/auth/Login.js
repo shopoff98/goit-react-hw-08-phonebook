@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { NavLink } from "react-router-dom";
 import s from "../styled/Navigation.module.css";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -34,6 +35,15 @@ export default function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (email === "") {
+      toast.error("Enter email");
+      return;
+    }
+
+    if (password === "") {
+      toast.error("Enter password");
+      return;
+    }
     const user = { email, password };
     dispatch(login(user));
     setEmail("");

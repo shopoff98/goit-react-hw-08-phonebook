@@ -37,6 +37,7 @@ export default function App() {
           <Route path="/contacts" element={<PrivateRoute />}>
             <Route path="/contacts" element={<Contacts />} />
           </Route>
+          <Route path="*" element={<Contacts />} />
         </Routes>
       </Suspense>
     </Container>
